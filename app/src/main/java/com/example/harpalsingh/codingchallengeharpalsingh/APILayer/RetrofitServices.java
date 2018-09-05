@@ -1,28 +1,32 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.APILayer;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+
 import com.example.harpalsingh.codingchallengeharpalsingh.Interfaces.PhotosInterface;
-import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoData;
+import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoDatum;
+
+import java.util.List;
+
 import retrofit2.Call;
+
 
 public class RetrofitServices {
 
+    @SuppressLint("StaticFieldLeak")
     private static RetrofitServices nyServiceInstance = null;
-    Context ctx;
 
-    public RetrofitServices(Context context) {
-        this.ctx = context;
+    private RetrofitServices() {
     }
 
-    public static RetrofitServices getNYServiceInstance(Context ctx) {
+    public static RetrofitServices getNYServiceInstance() {
         if (nyServiceInstance == null) {
-            nyServiceInstance = new RetrofitServices(ctx);
+            nyServiceInstance = new RetrofitServices();
         }
         return nyServiceInstance;
     }
 
-    public Call<PhotoData> getPhotos() {
-        return RetrofitAPIClient.NYAPIClient(ctx).create(PhotosInterface.class).getPhotos();
+    public Call<List<PhotoDatum>> getPhotos(String client_id) {
+        return RetrofitAPIClient.APIClient().create(PhotosInterface.class).getPhotos(client_id);
     }
 }
 

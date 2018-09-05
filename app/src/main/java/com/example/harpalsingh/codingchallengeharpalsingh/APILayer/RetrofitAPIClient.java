@@ -1,25 +1,20 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.APILayer;
 
-import android.content.Context;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.harpalsingh.codingchallengeharpalsingh.Constants.Constants.ROOT_URL;
+
 public class RetrofitAPIClient {
 
-    public static Retrofit retrofit = null;
-    private static String link = "google.com";
-
-    public static Retrofit NYAPIClient(Context ctx) {
+    public static Retrofit APIClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(link)
+        return new Retrofit.Builder()
+                .baseUrl(ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
-
-        return retrofit;
     }
 }

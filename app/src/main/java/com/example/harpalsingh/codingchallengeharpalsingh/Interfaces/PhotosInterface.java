@@ -1,17 +1,18 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.Interfaces;
 
-import android.provider.SyncStateContract;
+import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoDatum;
 
-import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoData;
+import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+import static com.example.harpalsingh.codingchallengeharpalsingh.Constants.Constants.UNSPLASH_ENDPOINT;
+
 
 public interface PhotosInterface {
 
-    @FormUrlEncoded
-    @POST()
-    Call<PhotoData> getPhotos();
+    @GET(UNSPLASH_ENDPOINT)
+    Call<List<PhotoDatum>> getPhotos(@Query("client_id") String client_id);
 }
