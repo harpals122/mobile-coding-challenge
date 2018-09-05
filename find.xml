@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../app/src/main/java/com/example/harpalsingh/codingchallengeharpalsingh/APILayer/RetrofitServices.java [app]'" />
-    <option name="defaultScopeName" value="File '.../app/src/main/java/com/example/harpalsingh/codingchallengeharpalsingh/APILayer/RetrofitServices.java [app]'" />
-    <option name="SEARCH_SCOPE" value="File '.../app/src/main/java/com/example/harpalsingh/codingchallengeharpalsingh/APILayer/RetrofitServices.java [app]'" />
+    <option name="customScope" value="File '.../app/src/main/AndroidManifest.xml [app]'" />
+    <option name="defaultScopeName" value="File '.../app/src/main/AndroidManifest.xml [app]'" />
+    <option name="SEARCH_SCOPE" value="File '.../app/src/main/AndroidManifest.xml [app]'" />
   </component>
 </application>
