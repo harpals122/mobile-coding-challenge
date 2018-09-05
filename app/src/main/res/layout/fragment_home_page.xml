@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.HomePageFragment">
+
+<TextView
+    android:id="@+id/account_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:text="@string/account_name_text"/>
+
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_below="@+id/account_name"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.odysseyDesigns.photosintegrationcourse.ui.views.GridRecyclerView
+        android:id="@+id/photo_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:columnWidth="80dp"
+        />
+</android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>
