@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.harpalsingh.codingchallengeharpalsingh.Constants.Constants.ROOT_URL;
 
-public class RetrofitAPIClient {
+class RetrofitAPIClient {
 
     public static Retrofit APIClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

@@ -25,8 +25,9 @@ public class RetrofitServices {
         return nyServiceInstance;
     }
 
-    public Call<List<PhotoDatum>> getPhotos(String client_id) {
-        return RetrofitAPIClient.APIClient().create(PhotosInterface.class).getPhotos(client_id);
+    public Call<List<PhotoDatum>> getPhotos(String client_id, int page_number) {
+        return RetrofitAPIClient.APIClient().create(PhotosInterface.class).getPhotos(client_id,page_number
+        );
     }
 }
 

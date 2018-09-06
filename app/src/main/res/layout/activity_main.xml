@@ -21,9 +21,9 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="?android:attr/actionBarSize"
                 android:background="@android:color/transparent"
-                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:navigationIcon="?android:attr/homeAsUpIndicator"
                 app:subtitleTextColor="@color/colorPrimary" />
 
         </RelativeLayout>
@@ -33,24 +33,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/appbar"
+            android:id="@+id/main_content_frame"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/frameContainer"
+            <include
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                layout="@layout/content_main"/>
 
         </LinearLayout>
 
     </RelativeLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_view" />
+    <include layout="@layout/navigation_layout"/>
 
 </android.support.v4.widget.DrawerLayout>

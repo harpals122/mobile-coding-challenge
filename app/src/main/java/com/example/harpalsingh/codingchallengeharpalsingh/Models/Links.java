@@ -4,7 +4,9 @@ package com.example.harpalsingh.codingchallengeharpalsingh.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Links {
+import java.io.Serializable;
+
+public class Links implements Serializable {
 
     @SerializedName("self")
     @Expose

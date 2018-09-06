@@ -1,11 +1,12 @@
 
 package com.example.harpalsingh.codingchallengeharpalsingh.Models;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PhotoDatum {
+public class PhotoDatum implements Serializable {
 
     @SerializedName("id")
     @Expose

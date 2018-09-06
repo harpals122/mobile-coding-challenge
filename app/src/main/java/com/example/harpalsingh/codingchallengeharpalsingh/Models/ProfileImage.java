@@ -4,7 +4,9 @@ package com.example.harpalsingh.codingchallengeharpalsingh.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ProfileImage {
+import java.io.Serializable;
+
+public class ProfileImage implements Serializable {
 
     @SerializedName("small")
     @Expose
