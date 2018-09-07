@@ -4,22 +4,21 @@ import java.util.ArrayList;
 
 public class AllData {
     private static final AllData ourInstance = new AllData();
+    private ArrayList<PhotoDatum> photoData = new ArrayList<>();
+
+    private AllData() {
+    }
 
     public static AllData getInstance() {
         return ourInstance;
     }
 
-    private AllData() {
+    public ArrayList<PhotoDatum> getPhotoData() {
+        return photoData;
     }
-
-    private ArrayList<PhotoDatum> photoData = new ArrayList<>();
 
     public void setPhotoData(ArrayList<PhotoDatum> photoData) {
         this.photoData = photoData;
-    }
-
-    public ArrayList<PhotoDatum> getPhotoData() {
-        return photoData;
     }
 
 }

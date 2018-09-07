@@ -1,4 +1,3 @@
-
 package com.example.harpalsingh.codingchallengeharpalsingh.Models;
 
 import com.google.gson.annotations.Expose;

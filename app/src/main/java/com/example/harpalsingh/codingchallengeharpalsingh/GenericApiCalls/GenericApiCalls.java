@@ -22,7 +22,7 @@ import retrofit2.Response;
 public class GenericApiCalls {
 
     private Context context;
-    private ArrayList<PhotoDatum> photoDatum = new ArrayList<>() ;
+    private ArrayList<PhotoDatum> photoDatum = new ArrayList<>();
 
     public GenericApiCalls() {
     }
