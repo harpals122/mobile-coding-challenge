@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Snap App</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="account_name_text">Harpal Singh</string>
     <string name="author_name">Harpal Singh</string>
     <string name="facebook">FACEBOOK</string>
