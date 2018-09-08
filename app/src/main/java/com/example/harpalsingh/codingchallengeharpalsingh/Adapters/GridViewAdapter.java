@@ -8,12 +8,12 @@ import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.harpalsingh.codingchallengeharpalsingh.Activities.MainActivity;
@@ -22,7 +22,10 @@ import com.example.harpalsingh.codingchallengeharpalsingh.R;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Callback;
 
 public class GridViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -32,8 +35,12 @@ public class GridViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final ConstraintSet constraintSet = new ConstraintSet();
     private Bitmap bitmap = null;
 
-    public GridViewAdapter(Context context, ArrayList<PhotoDatum> photoDatum, MainActivity activity) {
-        this.context = context;
+
+    private final int GRID_VIEW = 1;
+    private final int PROGRESS_VIEW = 0;
+
+    public GridViewAdapter(Context context , ArrayList<PhotoDatum> photoDatum, MainActivity activity) {
+        this.context =context;
         this.data = photoDatum;
         this.itemClick = activity;
 
@@ -51,15 +58,12 @@ public class GridViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         final GridViewHolder viewHolder = (GridViewHolder) holder;
 
-        Activity activity = (Activity) context;
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+
                 try {
-                    URL url = new URL(data.get(viewHolder.getAdapterPosition()).getUrls().getThumb());
+                    URL url = new URL(data.get(position).getUrls().getThumb());
                     bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -72,23 +76,16 @@ public class GridViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 Glide.with(context).clear(viewHolder.image);
 
-                Glide.with(context).load(data.get(viewHolder.getAdapterPosition()).getUrls().getThumb()).into(viewHolder.image);
+                Glide.with(context).load(data.get(position).getUrls().getThumb()).
+                        into(viewHolder.image);
 
-                viewHolder.image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                        itemClick.itemClick(viewHolder.getAdapterPosition());
-                    }
-                });
+        viewHolder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemClick.itemClick(position,viewHolder.image);
             }
         });
-    }
-
-    @Override
-    public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
-        super.onViewRecycled(holder);
-        Toast.makeText(context, "dfdsaf", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -97,7 +94,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public interface ItemClick {
-        void itemClick(int position);
+        void itemClick(final int position, final ImageView imageView);
     }
 
     class GridViewHolder extends RecyclerView.ViewHolder {
@@ -109,6 +106,17 @@ public class GridViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             image = itemView.findViewById(R.id.image);
             constraintLayout = itemView.findViewById(R.id.parentContsraint);
         }
+    }
+
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }
 

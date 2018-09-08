@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
@@ -14,5 +14,19 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="BaseAppTheme" parent="android:Theme.Material" tools:targetApi="lollipop">
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/change_image_transform</item>
+        <item name="android:windowExitTransition">@transition/change_image_transform</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/explode</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/explode</item>
+    </style>
 </resources>
 

@@ -31,21 +31,15 @@ public class GenericApiCalls {
         this.context = context;
     }
 
-    public void doUnsplashRequest(int page_number, final Boolean is_first_time) {
+    public void doUnsplashRequest(int page_number) {
         Call<List<PhotoDatum>> callPlaces = RetrofitServices.getNYServiceInstance().getPhotos(KeyConfig.client_key, page_number);
         callPlaces.enqueue(new Callback<List<PhotoDatum>>() {
             @Override
             public void onResponse(Call<List<PhotoDatum>> call, Response<List<PhotoDatum>> response) {
                 if (response.code() == 200) {
-                    if (is_first_time) {
-                        photoDatum = (ArrayList<PhotoDatum>) response.body();
-                        AllData.getInstance().setPhotoData(photoDatum);
-                        EventBus.getDefault().post(new GenericEventBus(photoDatum));
-                    } else {
-                        photoDatum.add((PhotoDatum) response.body());
-                        AllData.getInstance().setPhotoData(photoDatum);
-                        EventBus.getDefault().post(new PhotoPaginationEventBus(photoDatum));
-                    }
+                    photoDatum = (ArrayList<PhotoDatum>) response.body();
+                    AllData.getInstance().setPhotoData(photoDatum);
+                    EventBus.getDefault().post(new PhotoPaginationEventBus(photoDatum));
                 } else {
                     Toast.makeText(context, "Make sure you have proper Unauthorization key to access unsplash API ", Toast.LENGTH_LONG).show();
                 }
@@ -57,4 +51,9 @@ public class GenericApiCalls {
             }
         });
     }
+
+    public void doLoadMoreUnsplashRequest(int page_number) {
+
+    }
+
 }

@@ -18,7 +18,9 @@ public class AllData {
     }
 
     public void setPhotoData(ArrayList<PhotoDatum> photoData) {
-        this.photoData = photoData;
+        for (int i = 1 ; i < photoData.size(); i++) {
+            this.photoData.add(photoData.get(i));
+        }
     }
 
 }

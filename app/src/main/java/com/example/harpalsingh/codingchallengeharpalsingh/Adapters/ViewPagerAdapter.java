@@ -1,6 +1,8 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -19,10 +21,14 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     private final Context context;
     private final ArrayList<PhotoDatum> photoData;
+    Activity activity;
 
     public ViewPagerAdapter(Context context, ArrayList<PhotoDatum> photoData) {
         this.context = context;
         this.photoData = photoData;
+        this.activity= (Activity) context;
+
+
     }
 
     @Override
@@ -42,14 +48,20 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
+    public Object instantiateItem(@NonNull final ViewGroup container, int position) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = Objects.requireNonNull(layoutInflater).inflate(R.layout.view_pager_item_layout, container, false);
-        ImageView imageView = row.findViewById(R.id.viewPagerImage);
+        final ImageView imageView = row.findViewById(R.id.viewPagerImage);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().getSharedElementEnterTransition().setDuration(250);
+            imageView.setTransitionName("photo_image");
+        }
         Glide.
                 with(context)
                 .load(photoData.get(position).getUrls().getRegular())
                 .into(imageView);
+
 
         container.addView(row);
         return row;
@@ -63,4 +75,5 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
     }
+
 }
