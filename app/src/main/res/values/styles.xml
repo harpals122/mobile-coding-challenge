@@ -28,5 +28,29 @@
         <item name="android:windowSharedElementExitTransition">
             @transition/explode</item>
     </style>
+
+    <style name="defaultTextStyle" parent="header">
+        <item name="android:fontFamily">@font/avenir_next_bold</item>
+    </style>
+
+    <style name="header">
+        <item name="android:fontFamily">@font/app_title3</item>
+        <item name="android:textSize">@dimen/defualt_textview_size</item>
+        <item name="android:textColor">@color/textview_default_color</item>
+    </style>
+
+    <style name="defaultBodyTextStyle" parent="bodystyle">
+        <item name="android:fontFamily">@font/avenir_next_medium</item>
+    </style>
+
+
+    <style name="bodystyle">
+        <item name="android:fontFamily">@font/app_body</item>
+        <item name="android:textSize">@dimen/default_body_size</item>
+        <item name="android:textColor">@color/textview_default_color</item>
+    </style>
+
+
+
 </resources>
 

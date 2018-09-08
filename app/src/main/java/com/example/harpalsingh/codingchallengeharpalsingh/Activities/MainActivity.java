@@ -3,6 +3,7 @@ package com.example.harpalsingh.codingchallengeharpalsingh.Activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     NavigationView navigationView;
     @BindView(R.id.gridRecyclerView)
     RecyclerView recyclerView;
+
     private GridViewAdapter gridAdapter;
     private final ArrayList<PhotoDatum> photoData = new ArrayList<>();
 
@@ -108,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
                 }
             });
         }
-        Toast.makeText(MainActivity.this, "ds" + AllData.getInstance().getPhotoData().size(), Toast.LENGTH_LONG).show();
     }
 
     private void loadMoreRandomData() {
@@ -118,11 +119,17 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         Call<List<PhotoDatum>> callPlaces = RetrofitServices.getNYServiceInstance().getPhotos(KeyConfig.client_key, randomNumber);
         callPlaces.enqueue(new Callback<List<PhotoDatum>>() {
             @Override
-            public void onResponse(Call<List<PhotoDatum>> call, Response<List<PhotoDatum>> response) {
+            public void onResponse(Call<List<PhotoDatum>> call, final Response<List<PhotoDatum>> response) {
                 if (response.code() == 200) {
-                    photoDatum = (ArrayList<PhotoDatum>) response.body();
-                    AllData.getInstance().setPhotoData(photoDatum);
-                    gridAdapter.notifyItemRangeInserted(totalItemCount, 10);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            AllData.getInstance().setPhotoData((ArrayList<PhotoDatum>) response.body());
+
+                            gridAdapter.notifyItemRangeInserted(totalItemCount, 2);
+                        }
+                    },1000);
 
                 } else {
                     Toast.makeText(MainActivity.this, "Make sure you have proper Unauthorization key to access unsplash API ", Toast.LENGTH_LONG).show();

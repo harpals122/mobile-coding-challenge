@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="textview_default_color">#000</color>
+    <color name="light_silver">#FCDDB5</color>
+    <color name="silver">#FDF8F2</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
 </resources>

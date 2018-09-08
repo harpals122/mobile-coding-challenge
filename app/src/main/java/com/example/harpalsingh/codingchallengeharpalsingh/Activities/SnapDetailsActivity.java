@@ -41,8 +41,8 @@ public class SnapDetailsActivity extends AppCompatActivity {
 
 
         viewPager.setClipToPadding(false);
-        viewPager.setPadding(70, 0, 70, 0);
-        viewPager.setPageMargin(20);
+        viewPager.setPadding(70, 10, 70, 10);
+        viewPager.setPageMargin(2);
 
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setCurrentItem(id);
