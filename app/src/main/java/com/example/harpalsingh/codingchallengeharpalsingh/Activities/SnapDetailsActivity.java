@@ -1,5 +1,6 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -40,8 +41,7 @@ public class SnapDetailsActivity extends AppCompatActivity {
         assert bundle != null;
         int id = bundle.getInt("id");
 
-        photoData = AllData.getInstance().getPhotoData();
-
+        photoData = (ArrayList<PhotoDatum>) AllData.getInstance().getPhotoData().clone();
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, photoData);
 
@@ -50,7 +50,6 @@ public class SnapDetailsActivity extends AppCompatActivity {
         viewPager.setPadding(70, 10, 70, 10);
         viewPager.setPageMargin(2);
         viewPager.setCurrentItem(id);
-
     }
 
     @Override
@@ -61,6 +60,14 @@ public class SnapDetailsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("position",viewPager.getCurrentItem());
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
 

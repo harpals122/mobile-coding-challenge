@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     private final Random random = new Random();
     protected Handler handler;
 
+    private static final int SECOND_ACTIVITY_REQUEST_CODE = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
                     }
                 });
 
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, 1);
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
 
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -179,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
             bundle.putInt("id", currentPosition);
             intent.putExtras(bundle);
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "photo_image");
-            startActivity(intent, options.toBundle());
+            startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
         } else {
             bundle.putInt("id", currentPosition);
             bundle.putSerializable("photoData", photoData);
@@ -203,6 +205,17 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         bundle = new Bundle();
         Parcelable listState = recyclerView.getLayoutManager().onSaveInstanceState();
         bundle.putParcelable(recyclerViewStateStateKey, listState);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) { // Activity.RESULT_OK
+                recyclerView.smoothScrollToPosition(data.getIntExtra("position",0));
+            }
+        }
     }
 }
 

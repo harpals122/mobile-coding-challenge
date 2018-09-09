@@ -33,6 +33,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         this.activity = (Activity) context;
 
 
+
     }
 
     @Override
@@ -100,5 +101,6 @@ public class ViewPagerAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         saveState();
     }
+
 
 }
