@@ -16,7 +16,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.harpalsingh.codingchallengeharpalsingh.APILayer.RetrofitServices;
@@ -48,17 +50,16 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     NavigationView navigationView;
     @BindView(R.id.gridRecyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.loadin_progress_bar)
+    ProgressBar progressBar;
 
     private GridViewAdapter gridAdapter;
     private final ArrayList<PhotoDatum> photoData = new ArrayList<>();
 
-    private final int visibleThreshold = 2;
-    private int lastVisibleItem;
-    private int totalItemCount;
-    private int[] lastPositions = null;
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
     private ArrayList<PhotoDatum> photoDatum;
     private final Random random = new Random();
+    protected Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,38 +82,35 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
                     }
                 });
 
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, 1);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        gridAdapter = new GridViewAdapter(getApplicationContext(), AllData.getInstance().getPhotoData(), MainActivity.this, recyclerView);
+        recyclerView.setAdapter(gridAdapter);
+        recyclerView.setHasFixedSize(true);
 
         loadData();
 
-        if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    if (dy > 0) {
-                        totalItemCount = staggeredGridLayoutManager.getItemCount();
-
-                        if (lastPositions == null) {
-                            lastPositions = new int[staggeredGridLayoutManager.getSpanCount()];
-                        }
-
-                        lastPositions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
-                        lastVisibleItem = Math.max(lastPositions[0], lastPositions[1]);
-
-                        if (totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-                            loadMoreRandomData();
-
-                        }
+        handler = new Handler();
+        gridAdapter.setOnLoadMoreListener(new GridViewAdapter.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(final int totalCount) {
+                progressBar.setVisibility(View.VISIBLE);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadMoreRandomData(totalCount);
+                        gridAdapter.setLoaded();
+                        progressBar.setVisibility(View.GONE);
                     }
-                }
-            });
-        }
+                }, 2000);
+            }
+        });
     }
 
-    private void loadMoreRandomData() {
+
+    private void loadMoreRandomData(final int totalCount) {
 
         int randomNumber = random.nextInt(99 - 1) + 65;
 
@@ -121,16 +119,9 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
             @Override
             public void onResponse(Call<List<PhotoDatum>> call, final Response<List<PhotoDatum>> response) {
                 if (response.code() == 200) {
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            AllData.getInstance().setPhotoData((ArrayList<PhotoDatum>) response.body());
-
-                            gridAdapter.notifyItemRangeInserted(totalItemCount, 2);
-                        }
-                    },1000);
-
+                    photoDatum = (ArrayList<PhotoDatum>) response.body();
+                    AllData.getInstance().setPhotoData(photoDatum);
+                    gridAdapter.notifyItemRangeInserted(totalCount, 10);
                 } else {
                     Toast.makeText(MainActivity.this, "Make sure you have proper Unauthorization key to access unsplash API ", Toast.LENGTH_LONG).show();
                 }
@@ -152,9 +143,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
                 if (response.code() == 200) {
                     photoDatum = (ArrayList<PhotoDatum>) response.body();
                     AllData.getInstance().setPhotoData(photoDatum);
-                    gridAdapter = new GridViewAdapter(getApplicationContext(), AllData.getInstance().getPhotoData(), MainActivity.this);
-                    recyclerView.setAdapter(gridAdapter);
-                    gridAdapter.notifyDataSetChanged();
+                    gridAdapter.notifyItemRangeInserted(1, 10);
                 } else {
                     Toast.makeText(MainActivity.this, "Make sure you have proper Unauthorization key to access unsplash API ", Toast.LENGTH_LONG).show();
                 }

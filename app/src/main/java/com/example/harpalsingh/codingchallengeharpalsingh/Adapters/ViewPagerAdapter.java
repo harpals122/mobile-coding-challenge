@@ -30,7 +30,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     public ViewPagerAdapter(Context context, ArrayList<PhotoDatum> photoData) {
         this.context = context;
         this.photoData = photoData;
-        this.activity= (Activity) context;
+        this.activity = (Activity) context;
 
 
     }
@@ -68,26 +68,24 @@ public class ViewPagerAdapter extends PagerAdapter {
             imageView.setTransitionName("photo_image");
         }
         Glide.with(context)
-                .load(photoData.get(position).getUrls().getRegular())
+                .load(photoData.get(position).getUrls().getRegular()).thumbnail(Glide.with(context).load(R.drawable.image_placeholder))
                 .into(imageView);
-        userNameTextView.setText("By - "+ photoData.get(position).getUser().getFirstName());
-        likesTextView.setText(""+photoData.get(position).getLikes());
+
+        userNameTextView.setText("By - " + photoData.get(position).getUser().getFirstName());
+        likesTextView.setText("" + photoData.get(position).getLikes());
         Glide.with(context)
                 .load(photoData.get(position).getUser().getProfileImage().getMedium()).apply(RequestOptions.circleCropTransform())
                 .into(userImage);
 
-        bioTextView.setText("Bio - "+ photoData.get(position).getUser().getBio());
-
+        bioTextView.setText("Bio - " + photoData.get(position).getUser().getBio());
 
 
         String dynamicUrl = photoData.get(position).getUser().getPortfolioUrl();
-        if(dynamicUrl!=null) {
+        if (dynamicUrl != null) {
             String linkedText = String.format("Explore more: <a href=\"%s\">" + dynamicUrl + "</a> ", dynamicUrl);
             portfolioTextView.setText(Html.fromHtml(linkedText));
             portfolioTextView.setMovementMethod(LinkMovementMethod.getInstance());
         }
-
-
 
         container.addView(row);
         return row;
@@ -100,6 +98,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        saveState();
     }
 
 }

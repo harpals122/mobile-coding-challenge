@@ -11,7 +11,10 @@ import android.view.WindowManager;
 
 import com.example.harpalsingh.codingchallengeharpalsingh.Adapters.ViewPagerAdapter;
 import com.example.harpalsingh.codingchallengeharpalsingh.Models.AllData;
+import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoDatum;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +25,7 @@ public class SnapDetailsActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    ArrayList<PhotoDatum> photoData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +40,15 @@ public class SnapDetailsActivity extends AppCompatActivity {
         assert bundle != null;
         int id = bundle.getInt("id");
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, AllData.getInstance().getPhotoData());
+        photoData = AllData.getInstance().getPhotoData();
 
 
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, photoData);
 
+        viewPager.setAdapter(viewPagerAdapter);
         viewPager.setClipToPadding(false);
         viewPager.setPadding(70, 10, 70, 10);
         viewPager.setPageMargin(2);
-
-        viewPager.setAdapter(viewPagerAdapter);
         viewPager.setCurrentItem(id);
 
     }
