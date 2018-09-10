@@ -7,12 +7,18 @@ import java.util.List;
 
 public class PhotoPaginationEventBus {
     private ArrayList<PhotoDatum> photoData = new ArrayList<>();
+    private int total_count;
 
-    public PhotoPaginationEventBus(ArrayList<PhotoDatum> photoData) {
+    public PhotoPaginationEventBus(ArrayList<PhotoDatum> photoData, int total_count) {
         this.photoData = photoData;
+        this.total_count = total_count;
     }
 
     public ArrayList<PhotoDatum> getPhotoData() {
         return photoData;
+    }
+
+    public int getTotal_count() {
+        return total_count;
     }
 }

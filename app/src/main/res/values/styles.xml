@@ -24,9 +24,11 @@
 
         <!-- specify shared element transitions -->
         <item name="android:windowSharedElementEnterTransition">
-            @transition/explode</item>
+            @transition/explode
+        </item>
         <item name="android:windowSharedElementExitTransition">
-            @transition/explode</item>
+            @transition/explode
+        </item>
     </style>
 
     <style name="defaultTextStyle" parent="header">
@@ -50,6 +52,17 @@
         <item name="android:textColor">@color/textview_default_color</item>
     </style>
 
+    <style name="FullscreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
 
 
 </resources>

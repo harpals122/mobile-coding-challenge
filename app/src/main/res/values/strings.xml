@@ -7,4 +7,10 @@
     <string name="linkedin">LinkedIn</string>
     <string name="email">Email</string>
     <string name="name_lable">Author</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_snap_detail">SnapDetailActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
