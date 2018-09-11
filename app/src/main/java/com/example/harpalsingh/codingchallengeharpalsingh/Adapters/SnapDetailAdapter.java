@@ -1,11 +1,13 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.harpalsingh.codingchallengeharpalsingh.Activities.SnapDetailsActivity;
 import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoDatum;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 
@@ -22,14 +25,60 @@ import java.util.ArrayList;
 
 public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.SnapDetailViewHolder> {
 
-    private final Context context;
     private final ArrayList<PhotoDatum> data;
     private final RequestManager glide;
+    private OnLoadMoreListener onLoadMoreListener;
+    private boolean loading;
+    private int totalItemCount;
+    private int lastPositions;
+    private RecyclerView recyclerView;
 
-    public SnapDetailAdapter(Context context, ArrayList<PhotoDatum> photoData) {
-        this.context = context;
+    private Activity activity;
+
+    public SnapDetailAdapter(Context context, ArrayList<PhotoDatum> photoData, RecyclerView recyclerView) {
         this.data = photoData;
         glide = Glide.with(context);
+        setupScrolling(recyclerView);
+        this.recyclerView = recyclerView;
+        activity = (Activity) context;
+    }
+
+    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
+        this.onLoadMoreListener = onLoadMoreListener;
+    }
+
+    public void setLoaded() {
+        loading = false;
+    }
+
+    private void setupScrolling(RecyclerView recyclerView) {
+        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
+                    .getLayoutManager();
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView,
+                                       int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+
+                    totalItemCount = linearLayoutManager.getItemCount();
+
+                    lastPositions = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+
+                    if (!loading & totalItemCount == lastPositions + 1) {
+
+                        if (onLoadMoreListener != null) {
+                            onLoadMoreListener.onLoadMore(totalItemCount);
+                        }
+                        loading = true;
+                    }
+                }
+            });
+        }
+    }
+
+    public interface OnLoadMoreListener {
+        void onLoadMore(int totalCount);
     }
 
     @NonNull
@@ -37,13 +86,26 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
     public SnapDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.view_pager_item_layout, parent, false);
+
+        int orientation = activity.getResources().getConfiguration().orientation;
+        int width = recyclerView.getWidth();
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            params.width = (int) (width * 0.9);
+            view.setPadding(15, 15, 15, 15);
+            view.setLayoutParams(params);
+        }
+
+
         return new SnapDetailViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull SnapDetailViewHolder holder, int position) {
-        holder.setData(position);
+        holder.setData(holder.getAdapterPosition());
+        SnapDetailsActivity.position = holder.getAdapterPosition();
     }
 
     @Override
@@ -70,6 +132,7 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
         }
 
         void setData(int position) {
+
             glide.load(data.get(position).getUrls().getRegular())
                     .thumbnail(glide.load(R.drawable.image_placeholder)).into(imageView);
 

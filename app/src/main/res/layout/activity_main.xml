@@ -27,14 +27,17 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/main_content_frame"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/appbar"
-            android:orientation="vertical">
+            android:layout_below="@+id/appbar">
 
-        </LinearLayout>
+
+        <include
+            layout="@layout/content_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

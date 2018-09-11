@@ -3,10 +3,9 @@ package com.example.harpalsingh.codingchallengeharpalsingh.EventBus;
 import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoDatum;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PhotoPaginationEventBus {
-    private ArrayList<PhotoDatum> photoData = new ArrayList<>();
+    private ArrayList<PhotoDatum> photoData;
     private int total_count;
 
     public PhotoPaginationEventBus(ArrayList<PhotoDatum> photoData, int total_count) {

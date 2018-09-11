@@ -20,7 +20,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.harpalsingh.codingchallengeharpalsingh.Fragments.SnapGridFragment;
+import com.example.harpalsingh.codingchallengeharpalsingh.Activities.MainActivity;
 import com.example.harpalsingh.codingchallengeharpalsingh.Models.PhotoDatum;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 
@@ -40,9 +40,9 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
     private int totalItemCount;
     private int[] lastPositions = null;
 
-    public GridViewAdapter(Context context, ArrayList<PhotoDatum> photoDatum, SnapGridFragment fragment, RecyclerView recyclerView) {
+    public GridViewAdapter(Context context, ArrayList<PhotoDatum> photoDatum, MainActivity mainActivity, RecyclerView recyclerView) {
         this.data = photoDatum;
-        this.itemClick = fragment;
+        this.itemClick = (ItemClick) mainActivity;
         glide = Glide.with(context);
 
         setupScrolling(recyclerView);
@@ -126,7 +126,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
             super(itemView);
             image = itemView.findViewById(R.id.image);
             progressBar = itemView.findViewById(R.id.progressBar);
-            constraintLayout = itemView.findViewById(R.id.parentContsraint);
+            constraintLayout = itemView.findViewById(R.id.parentConstraint);
         }
 
         private void bindData(final int position) {

@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/details_content_frame"
+    <include
+        layout="@layout/content_snap_details"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/appbar"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
+        android:layout_height="match_parent" />
 
 </FrameLayout>
