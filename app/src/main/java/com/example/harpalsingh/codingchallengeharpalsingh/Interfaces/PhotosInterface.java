@@ -10,5 +10,5 @@ import static com.example.harpalsingh.codingchallengeharpalsingh.Constants.Const
 public interface PhotosInterface {
 
     @GET(UNSPLASH_ENDPOINT)
-    Call<List<PhotoDatum>> getPhotos(@Query("client_id") String client_id, @Query("page") int page_number);
+    Call<List<PhotoDatum>> getPhotos(@Query("client_id") String client_id, @Query("page") int page_number,@Query("per_page") int per_page);
 }

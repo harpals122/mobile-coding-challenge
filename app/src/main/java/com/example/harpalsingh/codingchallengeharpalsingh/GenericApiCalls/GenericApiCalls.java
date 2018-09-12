@@ -28,7 +28,7 @@ public class GenericApiCalls {
     }
 
     public void doUnsplashRequest(int page_number, final int total_count) {
-        Call<List<PhotoDatum>> callPlaces = RetrofitServices.getNYServiceInstance().getPhotos(KeyConfig.client_key, page_number);
+        Call<List<PhotoDatum>> callPlaces = RetrofitServices.getNYServiceInstance().getPhotos(KeyConfig.client_key, page_number,KeyConfig.per_page);
         callPlaces.enqueue(new Callback<List<PhotoDatum>>() {
             @Override
             public void onResponse(Call<List<PhotoDatum>> call, Response<List<PhotoDatum>> response) {

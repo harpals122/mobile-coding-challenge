@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
+        <ImageView
+            android:id="@+id/image_progress_Bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:foregroundGravity="center|center_horizontal"/>
+            android:layout_height="100dp"
+            android:foregroundGravity="center|center_horizontal"
+            android:background="@drawable/image_placeholder_one"/>
 
         <ImageView
             android:id="@+id/image"

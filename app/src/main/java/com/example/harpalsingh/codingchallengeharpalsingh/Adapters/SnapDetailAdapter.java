@@ -2,7 +2,6 @@ package com.example.harpalsingh.codingchallengeharpalsingh.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,14 +32,11 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
     private int lastPositions;
     private RecyclerView recyclerView;
 
-    private Activity activity;
-
     public SnapDetailAdapter(Context context, ArrayList<PhotoDatum> photoData, RecyclerView recyclerView) {
         this.data = photoData;
         glide = Glide.with(context);
         setupScrolling(recyclerView);
         this.recyclerView = recyclerView;
-        activity = (Activity) context;
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
@@ -87,16 +83,11 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
         View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.view_pager_item_layout, parent, false);
 
-        int orientation = activity.getResources().getConfiguration().orientation;
         int width = recyclerView.getWidth();
         ViewGroup.LayoutParams params = view.getLayoutParams();
-
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            params.width = (int) (width * 0.9);
-            view.setPadding(15, 15, 15, 15);
-            view.setLayoutParams(params);
-        }
-
+        params.width = (int) (width * 0.9);
+        view.setPadding(15, 15, 15, 15);
+        view.setLayoutParams(params);
 
         return new SnapDetailViewHolder(view);
 

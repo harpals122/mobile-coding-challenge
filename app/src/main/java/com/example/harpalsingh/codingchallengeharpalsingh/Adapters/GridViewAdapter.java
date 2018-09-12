@@ -120,12 +120,12 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
     class GridViewHolder extends RecyclerView.ViewHolder {
         final ImageView image;
         final ConstraintLayout constraintLayout;
-        final ProgressBar progressBar;
+        final ImageView placeHolder;
 
         GridViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            placeHolder = itemView.findViewById(R.id.image_progress_Bar);
             constraintLayout = itemView.findViewById(R.id.parentConstraint);
         }
 
@@ -134,13 +134,13 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
                     listener(new RequestListener<Bitmap>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                            progressBar.setVisibility(View.GONE);
+                            placeHolder.setVisibility(View.GONE);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                            progressBar.setVisibility(View.GONE);
+                            placeHolder.setVisibility(View.GONE);
                             int w = bitmap.getWidth();
                             int h = bitmap.getHeight();
                             final String ratio = String.format(Locale.getDefault(), "%d:%d", w, h);

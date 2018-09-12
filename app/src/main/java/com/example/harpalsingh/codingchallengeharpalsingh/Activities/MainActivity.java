@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     public void itemClick(final int currentPosition, final ImageView imageView) {
         Intent intent = new Intent(this, SnapDetailsActivity.class);
         intent.putExtra("currentPosition", currentPosition);
-        startActivityForResult(intent, requestCode);
+        startActivity(intent);
     }
 
     @Override
@@ -157,15 +157,6 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(PhotoPaginationEventBus event) {
         gridAdapter.notifyItemRangeInserted(event.getTotal_count(), 10);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == this.requestCode) {
-            int position = data.getIntExtra("updatePosition", 0);
-            recyclerView.scrollToPosition(position);
-        }
     }
 
     @Override
