@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 
 public class SnapDetailsActivity extends AppCompatActivity {
 
-    public static int position = -1;
+    public static int position =-1 ;
 
     @BindView(R.id.gridDetailsRecyclerViewpager)
     RecyclerView recyclerView;
@@ -115,9 +115,6 @@ public class SnapDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent =new Intent();
-        intent.putExtra("updatedPosition",position);
-        setResult(100,intent);
         super.onBackPressed();
     }
 }
