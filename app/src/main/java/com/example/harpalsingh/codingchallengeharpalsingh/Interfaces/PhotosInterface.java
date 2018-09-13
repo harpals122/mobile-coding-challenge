@@ -8,7 +8,6 @@ import retrofit2.http.Query;
 import static com.example.harpalsingh.codingchallengeharpalsingh.Constants.Constants.UNSPLASH_ENDPOINT;
 
 public interface PhotosInterface {
-
     @GET(UNSPLASH_ENDPOINT)
     Call<List<PhotoDatum>> getPhotos(@Query("client_id") String client_id, @Query("page") int page_number,@Query("per_page") int per_page);
 }

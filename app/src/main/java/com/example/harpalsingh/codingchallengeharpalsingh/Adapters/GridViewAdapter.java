@@ -1,7 +1,7 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.Adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -42,7 +41,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
 
     public GridViewAdapter(Context context, ArrayList<PhotoDatum> photoDatum, MainActivity mainActivity, RecyclerView recyclerView) {
         this.data = photoDatum;
-        this.itemClick = (ItemClick) mainActivity;
+        this.itemClick = mainActivity;
         glide = Glide.with(context);
 
         setupScrolling(recyclerView);
@@ -130,27 +129,28 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
         }
 
         private void bindData(final int position) {
-            glide.asBitmap().load(data.get(position).getUrls().getThumb()).
-                    listener(new RequestListener<Bitmap>() {
+
+            glide.load(data.get(position).getUrls().getThumb()).
+                    listener(new RequestListener<Drawable>() {
                         @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                            placeHolder.setVisibility(View.GONE);
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            placeHolder.setVisibility(View.VISIBLE);
                             return false;
                         }
 
                         @Override
-                        public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             placeHolder.setVisibility(View.GONE);
-                            int w = bitmap.getWidth();
-                            int h = bitmap.getHeight();
-                            final String ratio = String.format(Locale.getDefault(), "%d:%d", w, h);
-                            constraintSet.clone(constraintLayout);
-                            constraintSet.setDimensionRatio(image.getId(), ratio);
-                            constraintSet.applyTo(constraintLayout);
-                            image.setImageBitmap(bitmap);
                             return false;
                         }
                     }).into(image);
+
+            int height = data.get(position).getHeight();
+            int width = data.get(position).getWidth();
+            final String ratio = String.format(Locale.getDefault(), "%d:%d", width, height);
+            constraintSet.clone(constraintLayout);
+            constraintSet.setDimensionRatio(image.getId(), ratio);
+            constraintSet.applyTo(constraintLayout);
 
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -161,13 +161,3 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

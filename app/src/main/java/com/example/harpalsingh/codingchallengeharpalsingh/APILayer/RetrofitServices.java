@@ -29,4 +29,3 @@ public class RetrofitServices {
         return RetrofitAPIClient.APIClient().create(PhotosInterface.class).getPhotos(client_id, page_number,per_page);
     }
 }
-

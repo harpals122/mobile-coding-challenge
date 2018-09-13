@@ -11,17 +11,16 @@ import android.widget.ImageView;
 
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 
-
 public class SplashActivity extends AppCompatActivity {
-    private static int S = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        ImageView myView = (ImageView) findViewById(R.id.splashview);
+        ImageView myView = findViewById(R.id.splashview);
         Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         myView.startAnimation(myFadeInAnimation);
+        int delay = 3000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -30,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
                 SplashActivity.this.startActivity(i);
                 SplashActivity.this.finish();
             }
-        }, S);
+        }, delay);
 
 
     }

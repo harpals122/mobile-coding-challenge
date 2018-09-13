@@ -57,132 +57,24 @@ public class PhotoDatum implements Serializable {
     @Expose
     private User user;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public Integer getWidth() {
         return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
     }
 
     public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public Object getDescription() {
-        return description;
-    }
-
-    public void setDescription(Object description) {
-        this.description = description;
-    }
-
     public Urls getUrls() {
         return urls;
-    }
-
-    public void setUrls(Urls urls) {
-        this.urls = urls;
-    }
-
-    public Links getLinks() {
-        return links;
-    }
-
-    public void setLinks(Links links) {
-        this.links = links;
-    }
-
-    public List<Object> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Object> categories) {
-        this.categories = categories;
-    }
-
-    public Boolean getSponsored() {
-        return sponsored;
-    }
-
-    public void setSponsored(Boolean sponsored) {
-        this.sponsored = sponsored;
     }
 
     public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
-
-    public Boolean getLikedByUser() {
-        return likedByUser;
-    }
-
-    public void setLikedByUser(Boolean likedByUser) {
-        this.likedByUser = likedByUser;
-    }
-
-    public List<Object> getCurrentUserCollections() {
-        return currentUserCollections;
-    }
-
-    public void setCurrentUserCollections(List<Object> currentUserCollections) {
-        this.currentUserCollections = currentUserCollections;
-    }
-
-    public Object getSlug() {
-        return slug;
-    }
-
-    public void setSlug(Object slug) {
-        this.slug = slug;
-    }
-
     public User getUser() {
         return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
 }

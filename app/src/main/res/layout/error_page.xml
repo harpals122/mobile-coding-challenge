@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/retryParentView">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="60dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/disconnected"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ohno"
+            android:layout_gravity="center_horizontal"
+            style="@style/Theme.AppCompat.DayNight"
+            android:textSize="@dimen/defualt_textview_size"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/something_went_wrong"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            style="@style/body_style"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/retry"
+            android:id="@+id/retry"
+            android:textColor="@color/white"
+            style="@style/header"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:background="@color/black_overlay"/>
+    </LinearLayout>
+</RelativeLayout>

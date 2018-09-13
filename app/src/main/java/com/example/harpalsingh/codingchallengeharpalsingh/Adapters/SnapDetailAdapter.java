@@ -1,6 +1,5 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,7 +29,7 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
     private boolean loading;
     private int totalItemCount;
     private int lastPositions;
-    private RecyclerView recyclerView;
+    private final RecyclerView recyclerView;
 
     public SnapDetailAdapter(Context context, ArrayList<PhotoDatum> photoData, RecyclerView recyclerView) {
         this.data = photoData;
