@@ -7,12 +7,6 @@ import java.io.Serializable;
 
 public class Urls implements Serializable {
 
-    @SerializedName("raw")
-    @Expose
-    private String raw;
-    @SerializedName("full")
-    @Expose
-    private String full;
     @SerializedName("regular")
     @Expose
     private String regular;
@@ -30,5 +24,4 @@ public class Urls implements Serializable {
     public String getThumb() {
         return thumb;
     }
-
 }

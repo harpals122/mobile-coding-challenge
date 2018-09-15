@@ -19,16 +19,16 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.harpalsingh.codingchallengeharpalsingh.activities.MainActivity;
-import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoDatum;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
+import com.example.harpalsingh.codingchallengeharpalsingh.activities.MainActivity;
+import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoData;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridViewHolder> {
 
-    private final ArrayList<PhotoDatum> data;
+    private final ArrayList<PhotoData> data;
     private final ItemClick itemClick;
     private final ConstraintSet constraintSet = new ConstraintSet();
     private final int visibleThreshold = 6;
@@ -39,8 +39,8 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
     private int totalItemCount;
     private int[] lastPositions = null;
 
-    public GridViewAdapter(Context context, ArrayList<PhotoDatum> photoDatum, MainActivity mainActivity, RecyclerView recyclerView) {
-        this.data = photoDatum;
+    public GridViewAdapter(Context context, ArrayList<PhotoData> photoData, MainActivity mainActivity, RecyclerView recyclerView) {
+        this.data = photoData;
         this.itemClick = mainActivity;
         glide = Glide.with(context);
 

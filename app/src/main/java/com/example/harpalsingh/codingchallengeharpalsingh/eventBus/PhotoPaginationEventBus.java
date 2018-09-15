@@ -1,23 +1,23 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.eventBus;
 
-import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoDatum;
+import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoData;
 
 import java.util.ArrayList;
 
 public class PhotoPaginationEventBus {
-    private ArrayList<PhotoDatum> photoData;
-    private int initial_count;
+    private final int initial_count;
+    private final ArrayList<PhotoData> photoData;
 
-    public PhotoPaginationEventBus(ArrayList<PhotoDatum> photoData, int initial_count) {
+    public PhotoPaginationEventBus(ArrayList<PhotoData> photoData, int initial_count) {
         this.photoData = photoData;
         this.initial_count = initial_count;
     }
 
-    public ArrayList<PhotoDatum> getPhotoData() {
-        return photoData;
-    }
-
     public int getInitialCount() {
         return initial_count;
+    }
+
+    public ArrayList<PhotoData> getPhotoData() {
+        return photoData;
     }
 }

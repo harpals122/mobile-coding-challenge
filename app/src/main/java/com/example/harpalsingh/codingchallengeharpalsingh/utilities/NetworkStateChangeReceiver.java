@@ -13,8 +13,8 @@ import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.KeyConfig;
 
 public class NetworkStateChangeReceiver extends BroadcastReceiver {
 
-    private View parentView;
     private static Snackbar SNACKBAR = null;
+    private View parentView;
 
     public NetworkStateChangeReceiver() {
     }
@@ -27,7 +27,6 @@ public class NetworkStateChangeReceiver extends BroadcastReceiver {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context ctx, final Intent intent) {
-
         Context context;
         context = ctx;
 

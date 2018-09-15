@@ -1,5 +1,6 @@
 package com.example.harpalsingh.codingchallengeharpalsingh.activities;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,10 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.adapters.GridViewAdapter;
 import com.example.harpalsingh.codingchallengeharpalsingh.eventBus.PhotoPaginationEventBus;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.AllData;
-import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.NetworkStateChangeReceiver;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.Utilities;
 
@@ -39,6 +40,9 @@ import butterknife.OnClick;
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements GridViewAdapter.ItemClick {
 
+    private final Handler handler = new Handler();
+    private final int initial_count = 1;
+    private final String recyclerViewStateStateKey = "recyclerViewState";
     @BindView(R.id.app_drawer_layout)
     DrawerLayout drawerLayout;
     @BindView(R.id.toolbar)
@@ -57,13 +61,10 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     LinearLayout errorLayout;
     @BindView(R.id.retry)
     Button retry;
-
+    int request_code = 100;
     private Bundle bundle = new Bundle();
-    private final Handler handler = new Handler();
     private BroadcastReceiver networkBroadcast;
     private GridViewAdapter gridAdapter;
-    private final int initial_count = 1;
-    private final String recyclerViewStateStateKey = "recyclerViewState";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
 
         setupRecyclerView();
 
-        Utilities.doNetworkRequest(initial_count, parentView, mainContentLayout, errorLayout,MainActivity.this);
+        Utilities.doNetworkRequest(initial_count, parentView, mainContentLayout, errorLayout, MainActivity.this);
 
         loadDataMoreOnScroll();
     }
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Utilities.doNetworkRequest(totalCount, parentView, mainContentLayout, errorLayout,MainActivity.this);
+                        Utilities.doNetworkRequest(totalCount, parentView, mainContentLayout, errorLayout, MainActivity.this);
                         gridAdapter.setLoaded();
                         progressBar.setVisibility(View.GONE);
                     }
@@ -118,7 +119,18 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     public void itemClick(final int currentPosition, final ImageView imageView) {
         Intent intent = new Intent(this, SnapDetailsActivity.class);
         intent.putExtra("currentPosition", currentPosition);
-        startActivity(intent);
+        startActivityForResult(intent, request_code);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data.getIntExtra("POSITION", 0) != -1)
+                    recyclerView.smoothScrollToPosition(SnapDetailsActivity.POSITION);
+            }
+        }
     }
 
     @Override
@@ -135,10 +147,6 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         if (bundle != null) {
             Parcelable listState = bundle.getParcelable(recyclerViewStateStateKey);
             recyclerView.getLayoutManager().onRestoreInstanceState(listState);
-        }
-        if (SnapDetailsActivity.position != -1) {
-            recyclerView.smoothScrollToPosition(SnapDetailsActivity.position);
-            SnapDetailsActivity.position = -1;
         }
     }
 
@@ -163,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         unregisterReceiver(networkBroadcast);
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(PhotoPaginationEventBus event) {
         gridAdapter.notifyItemRangeInserted(event.getInitialCount(), 10);
@@ -179,9 +186,8 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("unused")
     @OnClick(R.id.retry)
     public void retry(View view) {
-        Utilities.doNetworkRequest(initial_count, parentView, mainContentLayout, errorLayout,MainActivity.this);
+        Utilities.doNetworkRequest(initial_count, parentView, mainContentLayout, errorLayout, MainActivity.this);
     }
 }

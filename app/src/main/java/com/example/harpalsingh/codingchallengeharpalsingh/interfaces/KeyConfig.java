@@ -7,6 +7,6 @@ public interface KeyConfig {
     String networkCallFailMessage = "Something went wrong please try again";
     String noConnection = "No connection";
     String wifiEnabled = "Wifi enabled";
-    String mobileDataEnabled="Mobile data enabled";
+    String mobileDataEnabled = "Mobile data enabled";
 
 }

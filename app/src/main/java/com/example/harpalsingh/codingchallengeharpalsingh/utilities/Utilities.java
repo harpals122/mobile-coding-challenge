@@ -20,9 +20,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.activities.MainActivity;
 import com.example.harpalsingh.codingchallengeharpalsingh.genericApiCalls.GenericApiCalls;
-import com.example.harpalsingh.codingchallengeharpalsingh.R;
 
 import java.util.Objects;
 import java.util.Random;
@@ -69,7 +69,6 @@ public class Utilities {
     }
 
     public static View setUpViewWidth(View view, Activity activity) {
-
         ViewGroup.LayoutParams params = view.getLayoutParams();
 
         int orientation = activity.getResources().getConfiguration().orientation;

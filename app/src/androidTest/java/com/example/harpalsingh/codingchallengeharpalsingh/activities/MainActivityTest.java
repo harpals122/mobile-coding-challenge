@@ -2,7 +2,8 @@ package com.example.harpalsingh.codingchallengeharpalsingh.activities;
 
 import org.junit.Test;
 
-public class MainActivityTest {
+@SuppressWarnings("EmptyMethod")
+class MainActivityTest {
 
     @Test
     public void onCreate() {

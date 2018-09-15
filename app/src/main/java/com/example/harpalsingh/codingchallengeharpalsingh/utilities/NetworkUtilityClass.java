@@ -8,11 +8,10 @@ import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.KeyConfig;
 
 import java.util.Objects;
 
-public class NetworkUtilityClass {
+class NetworkUtilityClass {
     private static final int TYPE_WIFI = 1;
     private static final int TYPE_MOBILE = 2;
     private static final int TYPE_NOT_CONNECTED = 0;
-
 
     private static int getConnectivityStatus(Context context) {
 
