@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="defualt_textview_size">18dp</dimen>
-    <dimen name="default_body_size">14dp</dimen>
-    <dimen name="base_padding">10dp</dimen>
+    <dimen name="default_text_view_size">18sp</dimen>
+    <dimen name="default_body_size">14sp</dimen>
+    <dimen name="base_padding">10sp</dimen>
 </resources>

@@ -4,7 +4,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.harpalsingh.codingchallengeharpalsingh.Constants.Constants.ROOT_URL;
+import static com.example.harpalsingh.codingchallengeharpalsingh.constants.Constants.ROOT_URL;
 
 class RetrofitAPIClient {
 

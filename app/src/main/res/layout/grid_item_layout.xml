@@ -7,24 +7,26 @@
     app:cardCornerRadius="4dp">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/parentConstraint"
+        android:id="@+id/parent_constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:id="@+id/image_progress_Bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:foregroundGravity="center|center_horizontal"
-            android:background="@drawable/image_placeholder_one"/>
+            android:foregroundGravity="center_horizontal|center_vertical"
+            android:background="@drawable/splash"
+            android:contentDescription="@string/placeholder" />
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
-            android:contentDescription="@string/app_name"
+            android:contentDescription="@string/unsplash_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

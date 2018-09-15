@@ -31,36 +31,36 @@
         </item>
     </style>
 
-    <style name="defaultTextStyle" parent="header">
+    <style name="DefaultTextStyle" parent="Header">
         <item name="android:fontFamily">@font/avenir_next_bold</item>
     </style>
 
-    <style name="header">
+    <style name="Header">
         <item name="android:fontFamily">@font/app_title3</item>
-        <item name="android:textSize">@dimen/defualt_textview_size</item>
-        <item name="android:textColor">@color/textview_default_color</item>
+        <item name="android:textSize">@dimen/default_text_view_size</item>
+        <item name="android:textColor">@color/text_view_default_color</item>
     </style>
 
-    <style name="defaultBodyTextStyle" parent="body_style">
+    <style name="DefaultBodyTextStyle" parent="BodyStyle">
         <item name="android:fontFamily">@font/avenir_next_medium</item>
     </style>
 
 
-    <style name="body_style">
+    <style name="BodyStyle">
         <item name="android:fontFamily">@font/app_body</item>
         <item name="android:textSize">@dimen/default_body_size</item>
-        <item name="android:textColor">@color/textview_default_color</item>
+        <item name="android:textColor">@color/text_view_default_color</item>
     </style>
 
-    <style name="FullscreenTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+    <style name="FullScreenTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/FullScreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
         <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style>
 
-    <style name="FullscreenActionBarStyle" parent="android:Widget.ActionBar">
+    <style name="FullScreenActionBarStyle" parent="android:Widget.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
 

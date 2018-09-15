@@ -5,10 +5,19 @@
     android:orientation="vertical"
     android:weightSum="10">
 
+
+    <ImageView
+        android:id="@+id/view_pager_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/unsplash_image" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="4"
         android:scrollbars="vertical"
         android:background="@color/light_silver">
 
@@ -40,11 +49,11 @@
                         android:layout_width="34dp"
                         android:layout_height="34dp"
                         android:layout_marginEnd="10dp"
-                        android:contentDescription="@string/app_name" />
+                        android:contentDescription="@string/user_image" />
 
                     <TextView
                         android:id="@+id/user_name"
-                        style="@style/defaultTextStyle"
+                        style="@style/DefaultTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -69,7 +78,7 @@
 
                     <TextView
                         android:id="@+id/likes"
-                        style="@style/body_style"
+                        style="@style/BodyStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical" />
@@ -87,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/bio_text"
-                    style="@style/body_style"
+                    style="@style/BodyStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical" />
@@ -112,13 +121,4 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <ImageView
-        android:id="@+id/viewPagerImage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/app_name" />
-
 </LinearLayout>
