@@ -5,7 +5,6 @@ package com.example.harpalsingh.codingchallengeharpalsingh.activities;
         import android.content.Intent;
         import android.net.wifi.WifiManager;
         import android.support.test.InstrumentationRegistry;
-        import android.support.test.espresso.ViewInteraction;
         import android.support.test.espresso.contrib.RecyclerViewActions;
         import android.support.test.rule.ActivityTestRule;
         import android.support.test.runner.AndroidJUnit4;
@@ -21,8 +20,6 @@ package com.example.harpalsingh.codingchallengeharpalsingh.activities;
         import static android.support.test.espresso.Espresso.onView;
         import static android.support.test.espresso.Espresso.pressBack;
         import static android.support.test.espresso.action.ViewActions.click;
-        import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-        import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
         import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
         import static android.support.test.espresso.matcher.ViewMatchers.withId;
         import static org.hamcrest.Matchers.allOf;
@@ -69,7 +66,7 @@ public class SnapDetailsActivityTest {
 
     private void lazyLoadingTestMeathod() {
 
-        for (int page_count = 0; page_count <= KeyConfig.test_number_of_pages; page_count++) {
+        for (int page_count = 0; page_count <= KeyConfig.testNumberOfPages; page_count++) {
 
             TestUtilities.sleep(3000);
 

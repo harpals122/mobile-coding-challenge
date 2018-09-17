@@ -11,4 +11,5 @@
         android:contentDescription="@string/splash_image"
         android:scaleType="fitCenter"
         android:src="@drawable/splash" />
+
 </RelativeLayout>

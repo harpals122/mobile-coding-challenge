@@ -54,7 +54,7 @@ public class MainActivityTest {
 
     private void lazyLoadingTestMeathod() {
 
-        for (int page_count = 0; page_count <= KeyConfig.test_number_of_pages; page_count++) {
+        for (int page_count = 0; page_count <= KeyConfig.testNumberOfPages; page_count++) {
 
             TestUtilities.sleep(3000);
 

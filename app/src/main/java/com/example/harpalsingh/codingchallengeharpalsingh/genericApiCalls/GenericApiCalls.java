@@ -36,7 +36,7 @@ public class GenericApiCalls {
         if (initial_count == 1)
             DIALOG = ProgressDialog.show(context, "", "Loading. Please wait...", true);
 
-        Call<List<PhotoData>> callPlaces = RetrofitServices.getNYServiceInstance().getPhotos(KeyConfig.client_key, page_number, KeyConfig.per_page);
+        Call<List<PhotoData>> callPlaces = RetrofitServices.getNYServiceInstance().getPhotos(KeyConfig.client_key, page_number, KeyConfig.dataPerPage);
         callPlaces.enqueue(new Callback<List<PhotoData>>() {
             @Override
             public void onResponse(@NonNull Call<List<PhotoData>> call, @NonNull Response<List<PhotoData>> response) {
