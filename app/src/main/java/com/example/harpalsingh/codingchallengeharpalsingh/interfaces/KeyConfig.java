@@ -8,5 +8,5 @@ public interface KeyConfig {
     String noConnection = "No connection";
     String wifiEnabled = "Wifi enabled";
     String mobileDataEnabled = "Mobile data enabled";
-
+    int test_number_of_pages = 10;
 }
