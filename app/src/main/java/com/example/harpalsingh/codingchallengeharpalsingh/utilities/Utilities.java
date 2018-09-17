@@ -68,7 +68,7 @@ public class Utilities {
         snackbar.show();
     }
 
-    public static View setUpViewWidth(View view, Activity activity) {
+    public static View getViewHoldersWidth(View view, Activity activity) {
         ViewGroup.LayoutParams params = view.getLayoutParams();
 
         int orientation = activity.getResources().getConfiguration().orientation;

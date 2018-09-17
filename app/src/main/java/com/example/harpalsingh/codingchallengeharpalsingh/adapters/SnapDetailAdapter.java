@@ -80,7 +80,7 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
         View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.view_pager_item_layout, parent, false);
 
-        return new SnapDetailViewHolder(Utilities.setUpViewWidth(view, activity));
+        return new SnapDetailViewHolder(Utilities.getViewHoldersWidth(view, activity));
     }
 
     @Override
