@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.adapters.SnapDetailAdapter;
 import com.example.harpalsingh.codingchallengeharpalsingh.eventBus.PhotoPaginationEventBus;
+import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.OnLoadMoreListener;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.AllData;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoData;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.Utilities;
@@ -63,7 +64,7 @@ public class SnapDetailsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.scrollToPosition(position);
 
-        snapDetailAdapter.setOnLoadMoreListener(new SnapDetailAdapter.OnLoadMoreListener() {
+        snapDetailAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(final int totalCount) {
                 progressBar.setVisibility(View.VISIBLE);

@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.adapters.GridViewAdapter;
 import com.example.harpalsingh.codingchallengeharpalsingh.eventBus.PhotoPaginationEventBus;
+import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.OnLoadMoreListener;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.AllData;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.NetworkStateChangeReceiver;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.Utilities;
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     }
 
     private void loadDataMoreOnScroll() {
-        gridAdapter.setOnLoadMoreListener(new GridViewAdapter.OnLoadMoreListener() {
+        gridAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(final int totalCount) {
                 progressBar.setVisibility(View.VISIBLE);
