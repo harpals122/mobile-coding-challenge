@@ -1,0 +1,27 @@
+Testing Tool Used
+
+This application used Expresso framework to test the application. The Espresso testing framework is an instrumentation-based API and 
+works with the AndroidJUnitRunner, test runner. It was written by Google for the sole purpose of functional testing of an Android UI. 
+Regarding the testing style, the Espresso description mentions “white box testing.” As Espresso is inside the application, 
+it has access to and knows how to use the code that runs the app for more thorough testing of each element.
+
+Path of tests :
+/Users/harpalsingh/Downloads/mobile-coding-challenge-master/app/src/androidTest/java/com/example/harpalsingh/codingchallengeharpalsingh/activities
+
+Requirements: 
+1. Turn off the mobile internet to run this test.
+2. Turn off the animations on the android device.
+3. Use physical device than the emulator.
+4. Some permissions might merely be required; please check application permissions manually if required
+
+There are three major tests to test the application logic.
+
+1. SplashActivityTest: This test checks if there is no internet connection on launching the application how the UI will handle and behave.
+
+2. MainActivityTest: This test is written to test the lazy loading and no internet connection handling on first lunch.
+
+3. SnapDetailsActivityTest: This test is written to test the data is being loaded in the grid and after clicking on the particular image 
+is it opening in full-screen mode.The detailed activity also supports lazy loading. The number of pages to be loaded can be set in 
+KeyConfig interface. It also ensures when the user clicks on the back is it taking him to the same image that he was at in detail mode.
+
+TestUtilities: As the application supports the modularity, this class includes all the reusable methods.
