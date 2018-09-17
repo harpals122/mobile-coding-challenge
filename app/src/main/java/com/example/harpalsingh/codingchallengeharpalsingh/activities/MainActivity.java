@@ -28,6 +28,7 @@ import com.example.harpalsingh.codingchallengeharpalsingh.eventBus.PhotoPaginati
 import com.example.harpalsingh.codingchallengeharpalsingh.models.AllData;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.NetworkStateChangeReceiver;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.Utilities;
+import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.OnLoadMoreListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements GridViewAdapter.I
     }
 
     private void loadDataMoreOnScroll() {
-        gridAdapter.setOnLoadMoreListener(new GridViewAdapter.OnLoadMoreListener() {
+        gridAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(final int totalCount) {
                 progressBar.setVisibility(View.VISIBLE);
