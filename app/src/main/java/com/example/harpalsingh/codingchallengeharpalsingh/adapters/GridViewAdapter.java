@@ -21,6 +21,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.activities.MainActivity;
+import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.OnLoadMoreListener;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoData;
 
 import java.util.ArrayList;
@@ -110,10 +111,6 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.GridVi
 
     public interface ItemClick {
         void itemClick(final int position, final ImageView imageView);
-    }
-
-    public interface OnLoadMoreListener {
-        void onLoadMore(int totalCount);
     }
 
     class GridViewHolder extends RecyclerView.ViewHolder {

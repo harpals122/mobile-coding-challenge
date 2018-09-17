@@ -18,6 +18,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.harpalsingh.codingchallengeharpalsingh.R;
 import com.example.harpalsingh.codingchallengeharpalsingh.activities.SnapDetailsActivity;
+import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.OnLoadMoreListener;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoData;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.Utilities;
 
@@ -92,10 +93,6 @@ public class SnapDetailAdapter extends RecyclerView.Adapter<SnapDetailAdapter.Sn
     @Override
     public int getItemCount() {
         return data.size();
-    }
-
-    public interface OnLoadMoreListener {
-        void onLoadMore(int totalCount);
     }
 
     class SnapDetailViewHolder extends RecyclerView.ViewHolder {
