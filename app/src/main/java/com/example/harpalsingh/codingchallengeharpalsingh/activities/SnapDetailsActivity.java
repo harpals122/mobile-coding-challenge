@@ -17,6 +17,7 @@ import com.example.harpalsingh.codingchallengeharpalsingh.eventBus.PhotoPaginati
 import com.example.harpalsingh.codingchallengeharpalsingh.models.AllData;
 import com.example.harpalsingh.codingchallengeharpalsingh.models.PhotoData;
 import com.example.harpalsingh.codingchallengeharpalsingh.utilities.Utilities;
+import com.example.harpalsingh.codingchallengeharpalsingh.interfaces.OnLoadMoreListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -63,7 +64,7 @@ public class SnapDetailsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.scrollToPosition(position);
 
-        snapDetailAdapter.setOnLoadMoreListener(new SnapDetailAdapter.OnLoadMoreListener() {
+        snapDetailAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(final int totalCount) {
                 progressBar.setVisibility(View.VISIBLE);
